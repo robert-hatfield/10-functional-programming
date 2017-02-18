@@ -10,8 +10,20 @@
     <link rel="stylesheet" href="/styles/layout.css">
     <link rel="stylesheet" href="/styles/modules.css">
     <link rel="icon" type="image/x-icon" href="https://avatars2.githubusercontent.com/u/18607604?v=3&s=200">
-    <!-- TODO: Setup a template for each row of the Author Stats section of this page: -->
-
+    <!-- [x] DONE: Setup a template for each row of the Author Stats section of this page: -->
+    <script id="admin-template" type="text/x-handlebars-template">
+      <h1>Blog Stats</h1>
+      <ul>Total articles:
+        <li>{{totalArticles}}</li>
+      </ul>
+      <ul>Total words:
+        <li>{{totalWords}}</li>
+      </ul>
+      <h2>Author Stats</h2>
+      <ul><em>Details on who is writing, and how much writing they are doing...</em>
+        <li><strong>{{author}}</strong>: {{authorWords}} words written</li>
+      </ul>
+  </script>
   </head>
   <body>
     <header class="site-header clearfix">
