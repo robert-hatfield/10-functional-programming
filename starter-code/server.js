@@ -7,9 +7,10 @@ const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 3000;
 const app = express();
 // NOTE: Use the appropriate conString for your operating system (Mac or Ubuntu Linux)
-// const conString = 'postgres://localhost:5432'; // [x] DONE: Don't forget to set your own conString (Mac)
-const conString = 'postgres://david:Password@localhost:5432/postgres'; // [x] DONE: Don't forget to set your own conString (Ubuntu)
+const conString = 'postgres://localhost:5432'; // [x] DONE: Don't forget to set your own conString (Mac)
+// const conString = 'postgres://david:Password@localhost:5432/postgres'; // [x] DONE: Don't forget to set your own conString (Ubuntu)
 const client = new pg.Client(conString);
+client.connect();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
