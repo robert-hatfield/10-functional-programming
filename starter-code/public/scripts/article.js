@@ -28,8 +28,6 @@
     //[x] DONE: Refactor this forEach code, by using a `.map` call instead, since what we are trying to accomplish
     // is the transformation of one collection into another.
     Article.all = rows.map(function(ele) {
-      console.log('rows:');
-      console.log(rows);
       return new Article(ele);
     });
     /* OLD forEach():
