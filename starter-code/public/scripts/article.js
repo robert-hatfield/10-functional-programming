@@ -28,6 +28,8 @@
     //[x] DONE: Refactor this forEach code, by using a `.map` call instead, since what we are trying to accomplish
     // is the transformation of one collection into another.
     Article.all = rows.map(function(ele) {
+      console.log('rows:');
+      console.log(rows);
       return new Article(ele);
     });
     /* OLD forEach():
@@ -63,7 +65,7 @@
   // [x] DONE: Chain together a `map` and a `reduce` call to get a rough count of all words in all articles.
   Article.numWordsAll = () => {
     return Article.all.map(function(article) {
-      return article.body.split(' ').length();
+      return article.body.split(' ').length;
     })
     .reduce(function(acc, curr) {return acc + curr}, 0);
   };
@@ -74,15 +76,29 @@
       return article.author;
     })
     .reduce(function(acc, curr) {
-      acc = curr in acc ? acc : acc + curr;
-      return acc});
+      if (!acc.includes(curr)) {
+        acc.push(curr);
+      }
+      return acc;
+    },[]);
   };
 
   Article.numWordsByAuthor = () => {
     return Article.allAuthors().map(author => {
-      /* TODO: Transform each author string into an object with properties for the author's name, as well as the total number of words across all articles written by the specified author.*/
-
-    })
+      return {
+        author : author,
+        authorWords : Article.all.filter(function(article){
+          return article.author === author;
+        })
+          .map(function(article) {
+            return article.body.split(' ').length;
+          })
+      .reduce(function(acc, curr){
+        return acc + curr;
+      })
+      /* [x] DONE: Transform each author string into an object with properties for the author's name, as well as the total number of words across all articles written by the specified author.*/
+      };
+    });
   };
 
   Article.truncateTable = callback => {
